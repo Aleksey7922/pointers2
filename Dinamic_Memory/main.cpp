@@ -29,7 +29,7 @@ void main()
 	int n;
 	cout << "¬ведите размер массива: "; cin >> n;
 
-	// создаем динамический масив:
+	// создаем динамический масcив:
 	int* arr = new int[n];
 	FillRand(arr, n);
 	Print(arr, n);

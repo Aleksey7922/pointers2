@@ -35,4 +35,7 @@ void main()
 		cout << *p_arr << "\t";
 	}
 	cout << endl;
+
+	
+
 }
