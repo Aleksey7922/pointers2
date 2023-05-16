@@ -16,6 +16,7 @@ void Print(int* arr, const int n);
 
 int* push_back(int* arr, int &n, int value);
 int* front_back(int* arr, int &n, int value);
+int* insert(int* arr, int& n, int value, int index);
 
 void main()
 {
@@ -165,7 +166,7 @@ int* push_back(int* arr,  int &n, int value)
 int* front_back(int* arr, int &n, int value)
 {
 	//создаем буферный массив , на один добавляемый элемент больше 
-	int* buffer = new int[n + 1];
+	int* buffer = new int[n + 1]{};
 	// записываем добавляемое значениие в первый (нулевой) элемент буферного масссива
 	buffer[0] = value;
 	//копируем мсходный массив в буферный
@@ -182,5 +183,15 @@ int* front_back(int* arr, int &n, int value)
 	buffer = nullptr;	
 	n++;
 	return arr;
+}
+int* insert(int* arr, int& n, int value, int index)
+{
+	//создаем динамический массив на один (добавляемый) элемент больше 
+	int* buffer = new int[n + 1];
+	//копируем исходный массив в буферный массив
+	for (int i = 0; i < n; i++)???????????
+	{
+		buffer[i] = arr[i];
+	}
 }
 
