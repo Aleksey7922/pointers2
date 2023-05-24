@@ -11,7 +11,7 @@ void Print(int arr[], const int n);
 
 int* push_back(int* arr, int& n, int value);
 int* push_front(int* arr, int& n, int value);
-int* insert(int* arr, int n, int value, int index);
+int* insert(int* arr, int& n, int value, int index);
 
 int* pop_back(int* arr, int& n);
 int* pop_front(int* arr, int& n);
@@ -44,11 +44,11 @@ void main()
 	cout << delimetr << endl;
 
 	int index;
-	/*cout << "введите индекс добавляемого элемента :"; cin >> index;
+	cout << "введите индекс добавляемого элемента :"; cin >> index;
 	cout << "введите добавляемое значение :"; cin >> value;
-	arr =insert (arr, n, value, index);
+	arr =insert(arr, n, value, index);
 	Print(arr, n);
-	cout << delimetr << endl; */
+	cout << delimetr << endl; 
 
 	cout << "Удаляем последний элемент массива" << endl;
 	arr = pop_back(arr, n);
