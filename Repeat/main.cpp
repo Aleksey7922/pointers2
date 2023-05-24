@@ -15,8 +15,12 @@ void FillRand(int* arr, const int n);
 void Print(int* arr, const int n);
 
 int* push_back(int* arr, int &n, int value);
-int* front_back(int* arr, int &n, int value);
+int* push_front(int* arr, int &n, int value);
 int* insert(int* arr, int& n, int value, int index);
+
+int* pop_back(int* arr, int& n);
+int* pop_front(int* arr, int& n);
+int* arase(int* arr, int& n,int index);
 
 void main()
 {
@@ -89,7 +93,7 @@ void main()
 	cout << delimetr << endl;
 
 	cout << "Введите добавляемое значение в начало массива: "; cin >> value;
-	arr = front_back(arr, n, value);
+	arr = push_front(arr, n, value);
 	Print(arr, n);
 	cout << delimetr << endl;
 
@@ -97,6 +101,22 @@ void main()
 	cout << "Введите добавляемое  в индекс  массива значение: "; cin >> value;
 	cout << "Введите индекс добавляемого значения: "; cin >> index;
 	arr = insert(arr, n, value, index);
+	Print(arr, n);
+	cout << delimetr << endl;
+	
+	cout << "Удаляем последний элемент массива" << endl;
+	arr=pop_back(arr, n);
+	Print(arr, n);
+	cout << delimetr << endl;
+
+	cout << "Удаляем  первый элемент массива" << endl;
+	arr = pop_front(arr, n);
+	Print(arr, n);
+	cout << delimetr << endl;
+
+	
+	cout << "Введите индекс удаляемого значения:	"; cin>> index;
+	arr = arase(arr, n, index);
 	Print(arr, n);
 	cout << delimetr << endl;
 
@@ -172,7 +192,7 @@ int* push_back(int* arr,  int &n, int value)
 	n++;
 	return arr;
 }
-int* front_back(int* arr, int &n, int value)
+int* push_front(int* arr, int &n, int value)
 {
 	//создаем буферный массив , на один добавляемый элемент больше 
 	int* buffer = new int[n + 1]{};
@@ -210,11 +230,74 @@ int* insert(int* arr, int& n, int value, int index)
 	//удаляем исходный массив 
 	delete[] arr;
 	//копируем буферный массив с добавленным элементом в исходный массив
-	arr = buffer;
-	
+	arr = buffer;	
 	//присваиваем элементу с указанным индексом добавляемое значение
 	arr[index] = value;
-	
+	//увеличиваем размер массива
+	n++;	
 	return arr;
 }
+int* pop_back(int* arr, int& n)
+{
+	// создаем динамический массив на один элемент меньше
+	int* buffer = new int[n-1];
+	//копируем исходный массив в буферный
+	for (int i = 0; i < n - 1; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	// удаляем исходный массив
+	delete[] arr;
+	arr = buffer;
+	//уменьшаем массив
+	n--;
+	return arr;
+	
+
+	//int* buffer = new int[--n];
+	//for (int i = 0; i < n; i++)byffer[i] = arr[i + 1];
+	//delete[] arr;
+	//return buffer;
+}
+int* pop_front(int* arr, int& n)
+{
+	// создаем динамический массив на один элемент меньше
+	int* buffer = new int[n - 1];
+	//копируем исходный массив в буферный(не с НУЛЕВОГО элемента ,а с  ПЕРВОГО)
+	for (int i = 0; i < n; i++)
+	{
+		buffer[i] = arr[i + 1];
+	}
+	//удаляем исходный массив
+	delete[] arr;
+	// копируем буферный массив с удаленным первым элементом в исходный
+	arr = buffer;
+	// уменьшаем массив
+	n--;
+
+	return arr;
+
+}
+int* arase(int* arr, int& n,int index)
+{	
+	// создаем динамический массив на один элемент меньше	
+	int* buffer = new int[n-1];
+	//копируем исходный массив в буферный ,до индекса
+	for (int i = 0; i < index; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	//копируем исходный массив в буферный ,после индекса
+	for (int i = index+1; i < n; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	//удаляем исходный массив
+	delete[] arr;
+	arr = buffer;
+	//arr[index];
+	// что делать с индексом ?
+	return arr;
+}
+
 
